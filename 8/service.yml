@@ -1,4 +1,4 @@
-name: nginx-drupal8
+name: drupal8-nginx
 scalable: true
 options:
 - version: 1.17
