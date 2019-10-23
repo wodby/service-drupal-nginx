@@ -1,4 +1,4 @@
 version: 1
 
 services:
-- drupal/8
+- 8
