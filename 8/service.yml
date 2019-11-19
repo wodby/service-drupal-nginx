@@ -16,8 +16,8 @@ containers:
   - name: NGINX_VHOST_PRESET
     value: drupal8
   ports:
-  - port: 80
-    name: http
+  - name: http
+    number: 80
     type: http
     main: true
 labels:
