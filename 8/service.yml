@@ -28,6 +28,7 @@ labels:
 - drupal8
 links:
 - name: backend
+  title: Backend
   type: service
   selectors:
   - labels:
@@ -35,8 +36,9 @@ links:
     - php-fpm
     - drupal
     # composer-like https://getcomposer.org/doc/articles/versions.md
-    option: ~7.1.0
+    #option: ~7.1.0
 # overrides.
 storage:
 - name: files
   from: backend
+  title: Files storage
