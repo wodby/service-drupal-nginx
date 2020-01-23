@@ -29,9 +29,9 @@ labels:
 links:
 - name: backend
   title: Backend
-  type: service
   selectors:
-  - labels:
+  - type: service
+    labels:
     # both labels must match.
     - php-fpm
     - drupal
