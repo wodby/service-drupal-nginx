@@ -10,6 +10,7 @@ options:
   stability_tag: 5.6.10
 containers:
 - name: nginx
+  image: wodby/nginx
   env:
   - name: NGINX_BACKEND_HOST
     value: '{{links.backend.host}}'
