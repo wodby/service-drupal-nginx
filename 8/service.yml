@@ -2,12 +2,14 @@ name: drupal8-nginx
 type: service
 title: Nginx (Drupal 8)
 scalable: true
+
 options:
 - version: 1.17
   stability_tag: 5.6.10
   default: true
 - version: 1.16
   stability_tag: 5.6.10
+  
 containers:
 - name: nginx
   image: wodby/nginx
@@ -23,10 +25,12 @@ containers:
     number: 80
     type: http
     main: true
+    
 labels:
 - nginx
 - drupal
 - drupal8
+
 links:
 - name: backend
   title: Backend
@@ -39,7 +43,18 @@ links:
     # composer-like https://getcomposer.org/doc/articles/versions.md
     #option: ~7.1.0
 # overrides.
+
 storages:
 - name: files
   from: backend
   title: Files storage
+
+configurations:
+- name: docroot
+  title: Nginx docroot
+  from: backend
+  var: DOCROOT_SUBDIR
+
+env:
+- name: NGINX_SERVER_ROOT
+  value: "/var/www/html/${DOCROOT_SUBDIR}"
