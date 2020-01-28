@@ -39,7 +39,7 @@ links:
     # composer-like https://getcomposer.org/doc/articles/versions.md
     #option: ~7.1.0
 # overrides.
-storage:
+storages:
 - name: files
   from: backend
   title: Files storage
