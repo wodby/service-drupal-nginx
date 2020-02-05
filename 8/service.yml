@@ -49,7 +49,7 @@ storages:
   from: backend
   title: Files storage
 
-configurations:
+settings:
 - name: docroot
   title: Nginx docroot
   from: backend
