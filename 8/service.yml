@@ -47,6 +47,7 @@ links:
 storages:
 - name: files
   from: backend
+  type: shared
   title: Files storage
 
 settings:
