@@ -58,4 +58,4 @@ settings:
 
 env:
 - name: NGINX_SERVER_ROOT
-  value: "/var/www/html/${DOCROOT_SUBDIR}"
+  value: /var/www/html/$(DOCROOT_SUBDIR)
