@@ -47,8 +47,8 @@ links:
 storages:
 - name: files
   from: backend
-  type: shared
   title: Files storage
+  path: /mnt/files
 
 settings:
 - name: docroot
