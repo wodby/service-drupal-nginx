@@ -44,10 +44,10 @@ links:
     #option: ~7.1.0
 # overrides.
 
-storages:
+volumes:
 - name: files
   from: backend
-  title: Files storage
+  title: Files
   path: /mnt/files
 
 settings:
