@@ -26,11 +26,6 @@ containers:
     type: http
     main: true
     
-build:
-- name: static
-  from: php
-  dockerfile: Dockerfile
-    
 labels:
 - nginx
 - drupal
