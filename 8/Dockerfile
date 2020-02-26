@@ -1,8 +1,0 @@
-ARG WODBY_BASE_IMAGE
-FROM ${WODBY_BASE_IMAGE}
-
-ARG COPY_FROM
-FROM ${COPY_FROM} as codebase
-
-ARG DOCROOT_SUBDIR
-COPY --from=codebase --chown=wodby:wodby ${COPY_FROM}/${DOCROOT_SUBDIR} /var/www/html
