@@ -44,6 +44,9 @@ links:
     #option: ~7.1.0
 # overrides.
 
+build:
+  dockerfile: Dockerfile
+
 volumes:
 - name: files
   from: backend
