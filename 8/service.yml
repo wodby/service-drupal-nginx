@@ -5,10 +5,8 @@ scalable: true
 
 options:
 - version: 1.17
-  stability_tag: 5.6.10
   default: true
 - version: 1.16
-  stability_tag: 5.6.10
   
 containers:
 - name: nginx
