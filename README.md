@@ -1,1 +1,1 @@
-# service-nginx
+# Service Nginx for Drupal

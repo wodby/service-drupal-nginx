@@ -1,13 +1,13 @@
-name: drupal8-nginx
+name: drupal9-nginx
 type: service
-title: Nginx (Drupal 8)
+title: Nginx (Drupal 9)
 scalable: true
 
 options:
 - version: 1.19
   default: true
 - version: 1.18
-  
+
 containers:
 - name: nginx
   image: wodby/nginx
@@ -17,7 +17,7 @@ containers:
   - name: NGINX_BACKEND_PORT
     value: '{{links.backend.port}}'
   - name: NGINX_VHOST_PRESET
-    value: drupal8
+    value: drupal9
   ports:
   - name: http
     number: 80
@@ -27,7 +27,7 @@ containers:
 labels:
 - nginx
 - drupal
-- drupal8
+- drupal9
 
 links:
 - name: backend
