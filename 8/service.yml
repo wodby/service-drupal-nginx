@@ -12,10 +12,6 @@ containers:
 - name: nginx
   image: wodby/nginx
   env:
-  - name: NGINX_BACKEND_HOST
-    value: '{{links.backend.host}}'
-  - name: NGINX_BACKEND_PORT
-    value: '{{links.backend.port}}'
   - name: NGINX_VHOST_PRESET
     value: drupal8
   ports:
@@ -32,6 +28,11 @@ labels:
 links:
 - name: backend
   title: Backend
+  env:
+  - name: NGINX_BACKEND_HOST
+    value: '{{link.host}}'
+  - name: NGINX_BACKEND_PORT
+    value: '{{link.port}}'  
   selectors:
   - type: service
     labels:
