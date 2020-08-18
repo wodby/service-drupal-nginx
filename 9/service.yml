@@ -32,7 +32,7 @@ links:
   - name: NGINX_BACKEND_HOST
     value: '{{link.host}}'
   - name: NGINX_BACKEND_PORT
-    value: '{{link.port}}'
+    value: {{link.port}}
   selectors:
   - type: service
     labels:
