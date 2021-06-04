@@ -1,5 +1,6 @@
 name: drupal9-nginx
 type: service
+icon: nginx
 title: Nginx (Drupal 9)
 scalable: true
 
