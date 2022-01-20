@@ -53,6 +53,16 @@ volumes:
   title: Files
   path: /mnt/files
 
+configs:
+- name: main config
+  path: /etc/nginx/nginx.conf
+- name: preset config
+  path: /etc/nginx/preset.conf
+- name: upstream config
+  path: /etc/nginx/upstream.conf
+- name: 50x error
+  path: /usr/share/nginx/html/50x.html
+
 settings:
 - name: docroot
   title: Nginx docroot
