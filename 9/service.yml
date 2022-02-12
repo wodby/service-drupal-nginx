@@ -57,7 +57,8 @@ volumes:
 configs:
 - name: main
   title: main config
-  path: /etc/gotpl/config/nginx.conf.tmpl
+  mountPath: /etc/gotpl/config
+  filename: nginx.conf.tmpl
 
 settings:
 - name: docroot
