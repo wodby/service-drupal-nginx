@@ -2,6 +2,8 @@ name: nginx-drupal9
 type: service
 from: nginx-php
 title: Nginx (Drupal 9)
+
+update: auto
     
 labels:
 - drupal
