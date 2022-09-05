@@ -9,6 +9,12 @@ labels:
 - drupal
 - drupal9
 
+settings:
+- name: docroot
+  title: Nginx docroot
+  from: backend
+  var: DOCROOT_SUBDIR
+
 env:
 - name: NGINX_VHOST_PRESET
   value: drupal9
