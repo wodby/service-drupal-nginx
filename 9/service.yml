@@ -1,4 +1,4 @@
-name: nginx-drupal9
+name: drupal9-nginx
 type: service
 from: nginx-php
 title: Nginx (Drupal 9)
