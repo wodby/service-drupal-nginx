@@ -1,6 +1,6 @@
 name: drupal9-nginx
 type: service
-from: nginx-php
+from: php-nginx
 title: Nginx (Drupal 9)
 
 update: auto
