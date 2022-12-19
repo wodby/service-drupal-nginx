@@ -1,0 +1,26 @@
+name: drupal10-nginx
+type: service
+from: php-nginx
+title: Nginx (Drupal 10)
+
+update: auto
+    
+labels:
+- drupal
+- drupal10
+
+settings:
+- name: docroot
+  title: Nginx docroot
+  from: backend
+  var: DOCROOT_SUBDIR
+
+volumes:
+- name: files
+  from: backend
+  title: Files
+  path: /mnt/files
+
+env:
+- name: NGINX_VHOST_PRESET
+  value: drupal9
