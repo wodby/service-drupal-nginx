@@ -23,4 +23,4 @@ volumes:
 
 env:
 - name: NGINX_VHOST_PRESET
-  value: drupal9
+  value: drupal10
