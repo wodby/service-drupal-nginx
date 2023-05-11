@@ -9,17 +9,10 @@ labels:
 - drupal
 - drupal10
 
-links:
-- name: files
-  title: Files storage
-  required: true
-  selectors:
-  - type: storage
-
 volumes:
 - name: files
   title: Files
-  link: files
+  from: backend
   path: /mnt/files
   readOnly: true
 
