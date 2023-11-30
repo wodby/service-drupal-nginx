@@ -21,6 +21,10 @@ settings:
   title: Nginx docroot
   from: backend
   var: DOCROOT_SUBDIR
+- name: sitedir
+  title: Drupal site dir
+  from: backend
+  var: DRUPAL_SITE
 
 env:
 - name: NGINX_VHOST_PRESET
