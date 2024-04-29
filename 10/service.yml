@@ -30,14 +30,4 @@ configs:
 - name: main
   config: nginx.conf
 
-helm:
-  values:
-  - name: initContainers
-    value: |
-      - name: drupal_files_symlink
-        image: wodby/nginx
-        args:
-        - make
-        - init
-        
         
