@@ -29,3 +29,15 @@ settings:
 env:
 - name: NGINX_VHOST_PRESET
   value: drupal10
+
+helm:
+  values:
+  - name: initContainers
+    value: |
+      - name: drupal_files_symlink
+        image: wodby/nginx
+        args:
+        - make
+        - init
+        
+        
