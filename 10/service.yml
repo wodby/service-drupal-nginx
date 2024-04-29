@@ -29,5 +29,7 @@ settings:
 configs:
 - name: main
   config: nginx.conf.tmpl
-- name: preset
-  config: preset.conf.tmpl
+- name: drupal10
+  title: Drupal 10 preset
+  path: /etc/gotpl/preset/drupal10.conf.tmpl
+  config: drupal10.conf.tmpl
