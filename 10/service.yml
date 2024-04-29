@@ -26,9 +26,9 @@ settings:
   from: backend
   var: DRUPAL_SITE
 
-env:
-- name: NGINX_VHOST_PRESET
-  value: drupal10
+configs:
+- name: main
+  config: nginx.conf
 
 helm:
   values:
