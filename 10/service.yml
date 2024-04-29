@@ -28,6 +28,6 @@ settings:
 
 configs:
 - name: main
-  config: nginx.conf
-
-        
+  config: nginx.conf.tmpl
+- name: preset
+  config: preset.conf.tmpl
