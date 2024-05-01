@@ -33,3 +33,7 @@ configs:
   title: Drupal 10 preset
   filepath: /etc/gotpl/preset/drupal10.conf.tmpl
   config: drupal10.conf.tmpl
+
+env:
+- name: NGINX_VHOST_PRESET
+  value: drupal10
