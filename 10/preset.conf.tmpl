@@ -1,12 +1,12 @@
-{{ $static := (getenv "NGINX_STATIC_EXT_REGEX" "css|cur|js|jpe?g|gif|htc|ico|png|xml|otf|ttf|eot|woff|woff2|svg|mp4|svgz|ogg|ogv|pdf|pptx?|zip|tgz|gz|rar|bz2|doc|xls|exe|tar|mid|midi|wav|bmp|rtf|txt|map|webp") }}
-{{ $not_found_regex := (getenv "NGINX_DRUPAL_NOT_FOUND_REGEX" "\\.(engine|md|txt|inc|install|make|module|profile|po|sh|.*sql|theme|twig|tpl(\\.php)?|xtmpl|yml|yaml)(~|\\.sw[op]|\\.bak|\\.orig|\\.save)?$|^(\\.(?!well-known).*|Entries.*|Repository|Root|Tag|Template)$|(web\\.config|composer\\.(json|lock)|(package|package-lock)\\.json|yarn\\.lock)$|^#.*#$|\\.php(~|\\.sw[op]|\\.bak|\\.orig|\\.save)$") }}
-{{ $files_dir_static := (getenv "NGINX_DRUPAL_FILES_STATIC_EXT_REGEX" "txt") }}
+{{ $static := (.Values.extraEnvVars.NGINX_STATIC_EXT_REGEX | default "css|cur|js|jpe?g|gif|htc|ico|png|xml|otf|ttf|eot|woff|woff2|svg|mp4|svgz|ogg|ogv|pdf|pptx?|zip|tgz|gz|rar|bz2|doc|xls|exe|tar|mid|midi|wav|bmp|rtf|txt|map|webp") }}
+{{ $not_found_regex := (.Values.extraEnvVars.NGINX_DRUPAL_NOT_FOUND_REGEX | default "\\.(engine|md|txt|inc|install|make|module|profile|po|sh|.*sql|theme|twig|tpl(\\.php)?|xtmpl|yml|yaml)(~|\\.sw[op]|\\.bak|\\.orig|\\.save)?$|^(\\.(?!well-known).*|Entries.*|Repository|Root|Tag|Template)$|(web\\.config|composer\\.(json|lock)|(package|package-lock)\\.json|yarn\\.lock)$|^#.*#$|\\.php(~|\\.sw[op]|\\.bak|\\.orig|\\.save)$") }}
+{{ $files_dir_static := (.Values.extraEnvVars.NGINX_DRUPAL_FILES_STATIC_EXT_REGEX | default "txt") }}
 
 index index.php index.html;
 
 include fastcgi.conf;
 
-{{- if getenv "NGINX_DRUPAL_HIDE_HEADERS" }}
+{{- if .Values.extraEnvVars.NGINX_DRUPAL_HIDE_HEADERS }}
 fastcgi_hide_header 'X-Drupal-Cache';
 fastcgi_hide_header 'X-Generator';
 fastcgi_hide_header 'X-Drupal-Dynamic-Cache';
@@ -31,7 +31,7 @@ location = /ads.txt {
 }
 
 location / {
-    {{- if getenv "NGINX_DRUPAL_FILE_PROXY_URL" }}
+    {{- if .Values.extraEnvVars.NGINX_DRUPAL_FILE_PROXY_URL }}
     location ~* /sites/.+/files {
         try_files $uri @file_proxy;
     }
@@ -50,19 +50,19 @@ location / {
     }
 
     location ~* /files/(css|js|styles)/ {
-        access_log {{ getenv "NGINX_STATIC_ACCESS_LOG" "off" }};
-        expires {{ getenv "NGINX_STATIC_EXPIRES" "1y" }};
+        access_log {{ .Values.extraEnvVars.NGINX_STATIC_ACCESS_LOG | default "off" }};
+        expires {{ .Values.extraEnvVars.NGINX_STATIC_EXPIRES | default "1y" }};
         try_files $uri @drupal;
     }
 
     location ~* /sites/.+/files/.+\.(?:{{ $files_dir_static }}) {
-        access_log {{ getenv "NGINX_STATIC_ACCESS_LOG" "off" }};
-        expires {{ getenv "NGINX_STATIC_EXPIRES" "1y" }};
-        tcp_nodelay {{ getenv "NGINX_STATIC_TCP_NODELAY" "off" }};
-        open_file_cache {{ getenv "NGINX_STATIC_OPEN_FILE_CACHE" "max=1000 inactive=30s" }};
-        open_file_cache_valid {{ getenv "NGINX_STATIC_OPEN_FILE_CACHE_VALID" "30s" }};
-        open_file_cache_min_uses {{ getenv "NGINX_STATIC_OPEN_FILE_CACHE_MIN_USES" "2" }};
-        open_file_cache_errors {{ getenv "NGINX_STATIC_OPEN_FILE_CACHE_ERRORS" "off" }};
+        access_log {{ .Values.extraEnvVars.NGINX_STATIC_ACCESS_LOG | default "off" }};
+        expires {{ .Values.extraEnvVars.NGINX_STATIC_EXPIRES | default "1y" }};
+        tcp_nodelay {{ .Values.extraEnvVars.NGINX_STATIC_TCP_NODELAY | default "off" }};
+        open_file_cache {{ .Values.extraEnvVars.NGINX_STATIC_OPEN_FILE_CACHE | default "max=1000 inactive=30s" }};
+        open_file_cache_valid {{ .Values.extraEnvVars.NGINX_STATIC_OPEN_FILE_CACHE_VALID | default "30s" }};
+        open_file_cache_min_uses {{ .Values.extraEnvVars.NGINX_STATIC_OPEN_FILE_CACHE_MIN_USES | default "2" }};
+        open_file_cache_errors {{ .Values.extraEnvVars.NGINX_STATIC_OPEN_FILE_CACHE_ERRORS | default "off" }};
     }
 
     location ~* /sites/.+/files/optimized/(css|js)/ {
@@ -71,12 +71,12 @@ location / {
         add_header Last-Modified 'Wed, 20 Jan 1988 04:20:42 GMT';
         add_header Accept-Ranges '';
         location ~* /sites/.*/files/optimized/css/.+\.css$ {
-            access_log {{ getenv "NGINX_STATIC_ACCESS_LOG" "off" }};
+            access_log {{ .Values.extraEnvVars.NGINX_STATIC_ACCESS_LOG | default "off" }};
             add_header Cache-Control "public, max-age=31536000, no-transform, immutable";
             try_files $uri @drupal;
         }
         location ~* /sites/.*/files/optimized/js/.+\.js$ {
-            access_log {{ getenv "NGINX_STATIC_ACCESS_LOG" "off" }};
+            access_log {{ .Values.extraEnvVars.NGINX_STATIC_ACCESS_LOG | default "off" }};
             add_header Cache-Control "public, max-age=31536000, no-transform, immutable";
             try_files $uri @drupal;
         }
@@ -85,7 +85,7 @@ location / {
     location ~* /admin/reports/hacked/.+/diff/ {
         try_files $uri @drupal;
     }
-    {{- if getenv "NGINX_DRUPAL_ALLOW_XML_ENDPOINTS" }}
+    {{- if .Values.extraEnvVars.NGINX_DRUPAL_ALLOW_XML_ENDPOINTS }}
     location ~* ^.+\.xml {
         try_files $uri @drupal;
     }
@@ -105,19 +105,19 @@ location / {
     }
 
     location ~* ^.+\.(?:{{ $static }})$ {
-        access_log {{ getenv "NGINX_STATIC_ACCESS_LOG" "off" }};
-        tcp_nodelay {{ getenv "NGINX_STATIC_TCP_NODELAY" "off" }};
-        expires {{ getenv "NGINX_STATIC_EXPIRES" "1y" }};
+        access_log {{ .Values.extraEnvVars.NGINX_STATIC_ACCESS_LOG | default "off" }};
+        tcp_nodelay {{ .Values.extraEnvVars.NGINX_STATIC_TCP_NODELAY | default "off" }};
+        expires {{ .Values.extraEnvVars.NGINX_STATIC_EXPIRES | default "1y" }};
 
         add_header Pragma "cache";
         add_header Cache-Control "public";
 
-        open_file_cache {{ getenv "NGINX_STATIC_OPEN_FILE_CACHE" "max=1000 inactive=30s" }};
-        open_file_cache_valid {{ getenv "NGINX_STATIC_OPEN_FILE_CACHE_VALID" "30s" }};
-        open_file_cache_min_uses {{ getenv "NGINX_STATIC_OPEN_FILE_CACHE_MIN_USES" "2" }};
-        open_file_cache_errors {{ getenv "NGINX_STATIC_OPEN_FILE_CACHE_ERRORS" "off" }};
+        open_file_cache {{ .Values.extraEnvVars.NGINX_STATIC_OPEN_FILE_CACHE | default "max=1000 inactive=30s" }};
+        open_file_cache_valid {{ .Values.extraEnvVars.NGINX_STATIC_OPEN_FILE_CACHE_VALID | default "30s" }};
+        open_file_cache_min_uses {{ .Values.extraEnvVars.NGINX_STATIC_OPEN_FILE_CACHE_MIN_USES | default "2" }};
+        open_file_cache_errors {{ .Values.extraEnvVars.NGINX_STATIC_OPEN_FILE_CACHE_ERRORS | default "off" }};
 
-        {{- if getenv "NGINX_STATIC_404_TRY_INDEX" }}
+        {{- if .Values.extraEnvVars.NGINX_STATIC_404_TRY_INDEX }}
         try_files $uri @drupal;
         {{- end }}
     }
@@ -125,9 +125,9 @@ location / {
     try_files $uri @drupal;
 }
 
-{{- if getenv "NGINX_DRUPAL_FILE_PROXY_URL" }}
+{{- if .Values.extraEnvVars.NGINX_DRUPAL_FILE_PROXY_URL }}
 location @file_proxy {
-    rewrite ^ {{ getenv "NGINX_DRUPAL_FILE_PROXY_URL" }}$request_uri? permanent;
+    rewrite ^ {{ .Values.extraEnvVars.NGINX_DRUPAL_FILE_PROXY_URL }}$request_uri? permanent;
 }
 {{- end }}
 
@@ -137,7 +137,7 @@ location @drupal {
     fastcgi_param SCRIPT_NAME /index.php;
     fastcgi_param SCRIPT_FILENAME $document_root/index.php;
     fastcgi_pass php;
-    track_uploads {{ getenv "NGINX_TRACK_UPLOADS" "uploads 60s" }};
+    track_uploads {{ .Values.extraEnvVars.NGINX_TRACK_UPLOADS | default "uploads 60s" }};
 }
 
 location @drupal-no-args {
