@@ -27,8 +27,6 @@ settings:
   var: DRUPAL_SITE
 
 configs:
-- name: main
-  config: nginx.conf.tmpl
 - name: drupal10
   title: Drupal 10 preset
   filepath: /etc/gotpl/preset/drupal10.conf.tmpl
