@@ -9,6 +9,9 @@ labels:
 - drupal
 - drupal10
 
+build:
+  dockerfile: Dockerfile
+
 volumes:
 - name: files
   title: Files
