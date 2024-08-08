@@ -3,5 +3,3 @@ version: 1
 services:
 - 11
 - 10
-#- 9
-#- 8
