@@ -1,0 +1,40 @@
+name: drupal11-nginx
+type: service
+from: php-nginx
+title: Nginx (Drupal 11)
+
+update: auto
+    
+labels:
+- drupal
+- drupal11
+
+build:
+  dockerfile: Dockerfile
+
+volumes:
+- name: files
+  title: Files
+  from: backend
+  path: /mnt/files
+  readOnly: true
+
+settings:
+- name: docroot
+  title: Nginx docroot
+  from: backend
+  var: DOCROOT_SUBDIR
+- name: sitedir
+  title: Drupal site dir
+  from: backend
+  var: DRUPAL_SITE
+
+configs:
+- name: drupal11
+  title: Drupal 11 preset
+  filepath: /etc/gotpl/preset/drupal11.conf.tmpl
+  config: preset.conf.tmpl
+
+env:
+- name: NGINX_VHOST_PRESET
+  value: drupal11
