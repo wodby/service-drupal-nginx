@@ -11,4 +11,3 @@ ARG DOCROOT_SUBDIR
 ARG DRUPAL_SITE
 
 RUN make init -f /usr/local/bin/actions.mk
-COPY ${COPY_FROM} ${COPY_TO}
