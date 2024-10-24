@@ -1,1 +1,1 @@
-# Service Nginx for Drupal
+# Nginx for Drupal Wodby 2.0 service
