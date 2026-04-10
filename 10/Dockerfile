@@ -5,10 +5,10 @@ ENV NGINX_VHOST_PRESET drupal10
 
 ARG COPY_FROM
 ARG COPY_TO
-COPY --chown=wodby:wodby ${COPY_FROM} ${COPY_TO}
 
 ARG DOCROOT_SUBDIR
 ARG DRUPAL_SITE
 
+COPY --chown=wodby:wodby ${COPY_FROM}/${DOCROOT_SUBDIR} ${COPY_TO}/${DOCROOT_SUBDIR}
+
 RUN make init -f /usr/local/bin/actions.mk
-COPY ${COPY_FROM} ${COPY_TO}
