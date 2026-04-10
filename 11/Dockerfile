@@ -5,7 +5,7 @@ ENV NGINX_VHOST_PRESET drupal11
 
 ARG COPY_FROM
 ARG COPY_TO
-COPY --chown=wodby:wodby ${COPY_FROM} ${COPY_TO}
+COPY --chown=wodby:wodby ${COPY_FROM}/web ${COPY_TO}/web
 
 ARG DOCROOT_SUBDIR
 ARG DRUPAL_SITE
