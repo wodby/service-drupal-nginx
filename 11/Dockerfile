@@ -7,6 +7,7 @@ ARG COPY_TO
 ARG DOCROOT_SUBDIR
 ARG DRUPAL_SITE
 
+# This is required for init action
 ENV NGINX_VHOST_PRESET drupal11
 
 COPY --chown=wodby:wodby ${COPY_FROM}/${DOCROOT_SUBDIR} ${COPY_TO}/${DOCROOT_SUBDIR}
