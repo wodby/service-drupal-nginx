@@ -24,10 +24,12 @@ settings:
   title: Nginx docroot
   from: backend
   var: DOCROOT_SUBDIR
+  build: true
 - name: sitedir
   title: Drupal site dir
   from: backend
   var: DRUPAL_SITE
+  build: true
 
 configs:
 - name: drupal11
