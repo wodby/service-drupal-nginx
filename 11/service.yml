@@ -3,8 +3,8 @@ type: service
 from: php-nginx
 fromVersionConstraint: "^1.0.0"
 fromVersion: "1.0.4"
+fromOptionVersionConstraint: ">=1.27"
 title: Nginx (Drupal 11)
-
 
 labels:
 - drupal
@@ -39,11 +39,6 @@ configs:
   default:
     source: image
     filepath: /etc/gotpl/presets/drupal11.conf.tmpl
-- name: drupal11
-  title: Drupal 11 preset
-  filepath: /etc/gotpl/preset/drupal11.conf.tmpl
-  config: preset.conf.tmpl
-  version: '1.25'
 
 env:
 - name: NGINX_VHOST_PRESET
