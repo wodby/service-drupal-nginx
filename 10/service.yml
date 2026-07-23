@@ -2,7 +2,7 @@ name: drupal10-nginx
 type: service
 from: php-nginx
 fromVersionConstraint: "^1.0.0"
-fromVersion: "1.0.3"
+fromVersion: "1.0.4"
 title: Nginx (Drupal 10)
 
 
@@ -36,17 +36,9 @@ configs:
 - name: drupal10
   title: Drupal 10 preset
   filepath: /etc/gotpl/preset/drupal10.conf.tmpl
-  config: preset.conf.tmpl
-- name: drupal10
-  title: Drupal 10 preset
-  filepath: /etc/gotpl/preset/drupal10.conf.tmpl
-  config: preset.conf.1.25.tmpl
-  version: '1.27'
-- name: drupal10
-  title: Drupal 10 preset
-  filepath: /etc/gotpl/preset/drupal10.conf.tmpl
-  config: preset.conf.1.25.tmpl
-  version: '1.25'
+  default:
+    source: image
+    filepath: /etc/gotpl/presets/drupal10.conf.tmpl
 
 env:
 - name: NGINX_VHOST_PRESET
