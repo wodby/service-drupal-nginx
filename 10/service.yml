@@ -37,6 +37,16 @@ configs:
   title: Drupal 10 preset
   filepath: /etc/gotpl/preset/drupal10.conf.tmpl
   config: preset.conf.tmpl
+- name: drupal10
+  title: Drupal 10 preset
+  filepath: /etc/gotpl/preset/drupal10.conf.tmpl
+  config: preset.conf.1.25.tmpl
+  version: '1.27'
+- name: drupal10
+  title: Drupal 10 preset
+  filepath: /etc/gotpl/preset/drupal10.conf.tmpl
+  config: preset.conf.1.25.tmpl
+  version: '1.25'
 
 env:
 - name: NGINX_VHOST_PRESET

@@ -37,6 +37,16 @@ configs:
   title: Drupal 11 preset
   filepath: /etc/gotpl/preset/drupal11.conf.tmpl
   config: preset.conf.tmpl
+- name: drupal11
+  title: Drupal 11 preset
+  filepath: /etc/gotpl/preset/drupal11.conf.tmpl
+  config: preset.conf.1.27.tmpl
+  version: '1.27'
+- name: drupal11
+  title: Drupal 11 preset
+  filepath: /etc/gotpl/preset/drupal11.conf.tmpl
+  config: preset.conf.tmpl
+  version: '1.25'
 
 env:
 - name: NGINX_VHOST_PRESET
