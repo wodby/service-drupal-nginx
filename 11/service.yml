@@ -11,6 +11,7 @@ labels:
 - drupal11
 
 build:
+  link: backend
   dockerfile: Dockerfile
 
 volumes:
