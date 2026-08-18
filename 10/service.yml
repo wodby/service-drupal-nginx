@@ -44,3 +44,5 @@ configs:
 env:
 - name: NGINX_VHOST_PRESET
   value: drupal10
+- name: WODBY_INIT_ACTION
+  value: init
