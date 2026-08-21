@@ -12,7 +12,10 @@ labels:
 
 build:
   link: backend
-  dockerfile: Dockerfile
+  # Only the docroot belongs in the web server image; the rest of the
+  # repository stays with the linked PHP service. The same subdirectory is used
+  # on both sides so both images resolve the docroot to the same absolute path.
+  copySubdir: "{{settings.docroot}}"
 
 volumes:
 - name: files
@@ -26,12 +29,10 @@ settings:
   title: Nginx docroot
   from: backend
   var: DOCROOT_SUBDIR
-  build: true
 - name: sitedir
   title: Drupal site dir
   from: backend
   var: DRUPAL_SITE
-  build: true
 
 configs:
 - name: drupal11
@@ -44,3 +45,5 @@ configs:
 env:
 - name: NGINX_VHOST_PRESET
   value: drupal11
+- name: WODBY_INIT_ACTION
+  value: init
