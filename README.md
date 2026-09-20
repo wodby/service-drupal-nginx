@@ -21,7 +21,7 @@ configuration for Drupal Nginx.
 | --- | --- |
 | Service name | `drupal11-nginx` |
 | Type | Application service |
-| Inherits from | [`php-nginx`](https://github.com/wodby/service-php-nginx) with version constraint `^1.0.0` |
+| Inherits from | [`php-nginx`](https://github.com/wodby/service-php-nginx) with version constraint `^2.0.0` |
 | Versions | `1.27` or newer; available versions and the default are inherited from `php-nginx` |
 | Volumes | Files |
 | Application build | Dockerfile: `Dockerfile` |
@@ -35,7 +35,7 @@ Manifest: [`11/service.yml`](11/service.yml)
 | --- | --- |
 | Service name | `drupal10-nginx` |
 | Type | Application service |
-| Inherits from | [`php-nginx`](https://github.com/wodby/service-php-nginx) with version constraint `^1.0.0` |
+| Inherits from | [`php-nginx`](https://github.com/wodby/service-php-nginx) with version constraint `^2.0.0` |
 | Volumes | Files |
 | Application build | Dockerfile: `Dockerfile` |
 | Configuration | 2 settings, 1 configuration files |
