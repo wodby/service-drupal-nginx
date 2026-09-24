@@ -1,8 +1,8 @@
 name: drupal11-nginx
 type: service
 from: php-nginx
-fromVersionConstraint: "^2.0.0"
-fromVersion: "2.0.1"
+fromVersionConstraint: "^2.1.0"
+fromVersion: "2.1.0"
 fromOptionVersionConstraint: ">=1.27"
 title: Nginx (Drupal 11)
 
