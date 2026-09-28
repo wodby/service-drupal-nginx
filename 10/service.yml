@@ -37,7 +37,7 @@ settings:
 configs:
 - name: drupal10
   title: Drupal 10 preset
-  filepath: /etc/gotpl/preset/drupal10.conf.tmpl
+  filepath: /etc/gotpl/presets/drupal10.conf.tmpl
   default:
     source: image
     filepath: /etc/gotpl/presets/drupal10.conf.tmpl

@@ -37,7 +37,7 @@ settings:
 configs:
 - name: drupal11
   title: Drupal 11 preset
-  filepath: /etc/gotpl/preset/drupal11.conf.tmpl
+  filepath: /etc/gotpl/presets/drupal11.conf.tmpl
   default:
     source: image
     filepath: /etc/gotpl/presets/drupal11.conf.tmpl
